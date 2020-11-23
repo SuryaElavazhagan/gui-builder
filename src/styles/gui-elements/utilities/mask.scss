@@ -1,0 +1,15 @@
+#gui-click-mask,
+#gui-hover-mask {
+  position: absolute;
+  z-index: 100;
+  transition: all 0.2s ease-in;
+  pointer-events: none;
+}
+
+#gui-click-mask {
+  border: 2px solid #BA68C8;
+}
+
+#gui-hover-mask {
+  border: 2px dashed #CE93D8;
+}
