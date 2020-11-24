@@ -1,14 +1,13 @@
-import { DragEvent, MouseEvent } from 'react';
+import { DragEvent, MouseEvent, useContext } from 'react';
 import { DOM } from '../constants/dom.constants';
+import { Builder } from '../context/builder.context';
 import { dom } from '../services/DOM.service';
 import { mask } from '../services/Mask.service';
 import '../styles/components/builder-pane.scss';
 
-interface BuilderPaneProps {
-  handleElementSelected: (ref: HTMLElement) => void;
-}
+function BuilderPane() {
 
-function BuilderPane({ handleElementSelected }: BuilderPaneProps) {
+  const { dispatch } = useContext(Builder);
 
   function handleDragOver(event: DragEvent) {
     event.preventDefault();
@@ -62,9 +61,10 @@ function BuilderPane({ handleElementSelected }: BuilderPaneProps) {
     if (target) {
       event.stopPropagation();
       mask.paintClickMask(target);
-      handleElementSelected(target);
+      dispatch({ type: 'select', payload: target.id });
     } else {
       mask.hideClickMask();
+      dispatch({ type: 'select', payload: '' });
     }
   }
 
