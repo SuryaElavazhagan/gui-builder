@@ -4,10 +4,10 @@ import './styles/index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// Had to remove strict-mode
+// See: https://github.com/JedWatson/react-select/issues/4094
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 
