@@ -1,15 +1,16 @@
-import './styles/components/app.scss';
-import SidePane from './components/SidePane';
+import SidePane from './components/SidePane/SidePane';
 import BuilderPane from './components/BuilderPane';
+import { BuilderProvider } from './context/builder.context';
+import './styles/components/app.scss';
 
 function App() {
-  function handleElementSelected(ref: HTMLElement) {}
-
   return (
-    <div className="gui">
-      <SidePane />
-      <BuilderPane handleElementSelected={handleElementSelected} />
-    </div>
+    <BuilderProvider>
+      <div className="gui">
+        <SidePane />
+        <BuilderPane />
+      </div>
+    </BuilderProvider>
   );
 }
 
