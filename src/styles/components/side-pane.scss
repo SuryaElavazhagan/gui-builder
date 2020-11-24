@@ -1,5 +1,6 @@
 .gui-side-pane {
   width: 25rem;
+  max-width: 25rem;
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.2);
   height: 100%;
   padding: 1rem;
@@ -16,6 +17,44 @@
 
     .gui-element-label {
       margin: 0 0.4rem;
+    }
+  }
+
+  .gui-editor-back {
+    display: inline-flex;
+    margin: 1rem 0;
+    align-items: center;
+    cursor: pointer;
+
+    img {
+      margin-right: 0.4rem;
+    }
+  }
+
+  .gui-editor-tab-area {
+    .gui-editor-tab {
+      display: inline-flex;
+      position: relative;
+      padding: 0.125rem;
+      margin: 0.625rem 0;
+      list-style: none;
+      background-color: rgb(233, 233, 233);
+      border-radius: 0.4375rem;
+    }
+
+    li {
+      z-index: 1;
+      padding: 0.4375rem 0.625rem;
+      cursor: pointer;
+      border-radius: 0.4375rem;
+    }
+
+    .gui-editor-tab-animator {
+      cursor: pointer;
+      position: absolute;
+      background: rgb(255, 255, 255);
+      border-radius: 0.4375rem;
+      transition: all 0.25s ease;
     }
   }
 }
