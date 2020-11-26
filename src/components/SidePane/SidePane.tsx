@@ -64,7 +64,7 @@ function SidePane(): JSX.Element {
 
   function renderCurrentTab() {
     if (selectedTab === 'general') {
-      return <GeneralEditor />
+      return <GeneralEditor handleDeselection={handleBack} />
     } else if (selectedTab === 'specific') {
       const ref = document.getElementById(state.selectedElement) as HTMLElement;
       switch (ref.dataset.type) {

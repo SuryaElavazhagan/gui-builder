@@ -3,8 +3,23 @@ import { TwitterPicker } from 'react-color';
 import BackgroundEditor from './General/BackgroundEditor';
 import BorderEditor from './General/BorderEditor';
 import SpacingEditor from './General/SpacingEditor';
+import '../../../styles/components/general-editor.scss';
+import { useContext } from 'react';
+import { Builder } from '../../../context/builder.context';
 
-function GeneralEditor() {
+interface GeneralEditorProps {
+  handleDeselection: () => void;
+}
+
+function GeneralEditor({ handleDeselection }: GeneralEditorProps) {
+  const { state } = useContext(Builder);
+
+  function handleDelete() {
+    const ref = document.getElementById(state.selectedElement) as HTMLElement;
+    ref.remove();
+    handleDeselection();
+  }
+
   return (
     <div className="gui-general-editor">
       <Collapse accordion={true}>
@@ -22,6 +37,17 @@ function GeneralEditor() {
           <TwitterPicker />
         </Collapse.Panel>
       </Collapse>
+      <div className="gui-editor-other-settings">
+        <button className="gui-editor-button gui-element-copy">
+          Copy
+        </button>
+        <button 
+          className="gui-editor-button gui-element-delete"
+          onClick={handleDelete}
+        >
+          Delete
+        </button>
+      </div>
     </div>
   );
 }
