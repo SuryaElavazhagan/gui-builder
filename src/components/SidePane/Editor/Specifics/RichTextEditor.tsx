@@ -1,7 +1,7 @@
 import { MouseEvent, useContext, useEffect } from "react";
 import Select, { ValueType } from 'react-select';
 import { Builder } from "../../../../context/builder.context";
-import { TextEditor, TextEditCommands } from "../../../../services/TextEditor";
+import { TextEditor, TextEditCommands } from "../../../../services/TextEditor.service";
 import { FONT_FAMILIES, FONT_SIZES } from "../../../../constants/text.constants";
 import { SelectOptions } from "../../../../interfaces/Select";
 import bold from '../../../../assets/icons/bold.png';
