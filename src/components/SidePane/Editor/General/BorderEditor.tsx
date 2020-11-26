@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import Select, { ValueType } from 'react-select';
 import { BORDER_TYPES } from '../../../../constants/border.constants';
 import { Builder } from '../../../../context/builder.context';
@@ -38,36 +38,16 @@ function BorderEditor() {
     setBorderColor('#000000');
   }
 
-  function handleBorderWidthChange(event: FormEvent<HTMLInputElement>) {
+  function handleBorderWidthChange(values: number[]) {
     const ref = document.getElementById(state.selectedElement) as HTMLElement;
-    let _borderWidth = Array.from(borderWidth);
-
-    switch (event.currentTarget.name) {
-      case 'all':
-        _borderWidth = new Array(4).fill(Number(event.currentTarget.value));
-        break;
-      default:
-        _borderWidth[Number(event.currentTarget.name)] = Number(event.currentTarget.value);
-    }
-
-    ref.style.borderWidth = _borderWidth.join('px ').concat('px');
-    setBorderWidth(_borderWidth);
+    ref.style.borderWidth = values.join('px ').concat('px');
+    setBorderWidth(values);
   }
 
-  function handleBorderRadiusChange(event: FormEvent<HTMLInputElement>) {
+  function handleBorderRadiusChange(values: number[]) {
     const ref = document.getElementById(state.selectedElement) as HTMLElement;
-    let _borderRadius = Array.from(borderRadius);
-    
-    switch (event.currentTarget.name) {
-      case 'all':
-        _borderRadius = new Array(4).fill(Number(event.currentTarget.value));
-        break;
-      default:
-        _borderRadius[Number(event.currentTarget.name)] = Number(event.currentTarget.value);
-    }
-
-    ref.style.borderRadius = _borderRadius.join('px ').concat('px');
-    setBorderRadius(_borderRadius);
+    ref.style.borderRadius = values.join('px ').concat('px');
+    setBorderRadius(values);
   }
 
   function handleBorderColorChange(color: ColorResult) {
@@ -84,7 +64,7 @@ function BorderEditor() {
           <GutterEditor
             names={['Top', 'Right', 'Bottom', 'Left']}
             values={borderWidth}
-            handleInput={handleBorderWidthChange}
+            onChange={handleBorderWidthChange}
           />
         </div>
       );
@@ -99,7 +79,7 @@ function BorderEditor() {
           <GutterEditor
             names={['Top Left', 'Top Right', 'Bottom Right', 'Bottom Left']}
             values={borderRadius}
-            handleInput={handleBorderRadiusChange}
+            onChange={handleBorderRadiusChange}
           />
         </div>
       );

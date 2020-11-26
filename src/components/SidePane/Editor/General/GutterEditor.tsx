@@ -6,10 +6,10 @@ import '../../../../styles/components/gutter.scss';
 interface GutterProps {
   names: string[];
   values: number[];
-  handleInput: (event: FormEvent<HTMLInputElement>) => void;
+  onChange: (values: number[]) => void;
 }
 
-function GutterEditor({ names, values, handleInput }: GutterProps) {
+function GutterEditor({ names, values, onChange }: GutterProps) {
   const [isAppliedToAllSides, setIsAppliedToAllSides] = useState(false);
 
   useEffect(() => {
@@ -19,6 +19,20 @@ function GutterEditor({ names, values, handleInput }: GutterProps) {
     // This value should be controlled by user
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function handleInput(event: FormEvent<HTMLInputElement>) {
+    let _values = Array.from(values);
+
+    switch (event.currentTarget.name) {
+      case 'all':
+        _values = new Array(4).fill(Number(event.currentTarget.value));
+        break;
+      default:
+        _values[Number(event.currentTarget.name)] = Number(event.currentTarget.value);
+    }
+
+    onChange(_values);
+  }
 
   function handleSetIsAppliedToAllSides(event: ChangeEvent<HTMLInputElement>) {
     setIsAppliedToAllSides(event.currentTarget.checked);
