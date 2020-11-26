@@ -1,5 +1,6 @@
 import Collapse from 'rc-collapse';
 import { TwitterPicker } from 'react-color';
+import BackgroundEditor from './General/BackgroundEditor';
 import BorderEditor from './General/BorderEditor';
 import SpacingEditor from './General/SpacingEditor';
 
@@ -7,6 +8,9 @@ function GeneralEditor() {
   return (
     <div className="gui-general-editor">
       <Collapse accordion={true}>
+        <Collapse.Panel header="Background">
+          <BackgroundEditor />
+        </Collapse.Panel>
         <Collapse.Panel header="Spacing">
           <SpacingEditor />
         </Collapse.Panel>
