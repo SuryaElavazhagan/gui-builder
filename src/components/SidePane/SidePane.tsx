@@ -25,12 +25,10 @@ function SidePane(): JSX.Element {
       animator.style.width = `${tabRef.offsetWidth}px`;
       animator.style.height = `${tabRef.offsetHeight}px`;
     }
-  }, [selectedTab]);
+  });
 
   useEffect(() => {
-    if (state.selectedElement !== '') {
-      setSelectedTab('general');
-    }
+    setSelectedTab('specific');
   }, [state.selectedElement]);
   
   function handleDragStart(event: DragEvent) {
