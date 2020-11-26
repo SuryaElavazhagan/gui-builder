@@ -1,9 +1,10 @@
 .gui-side-pane {
-  width: 25rem;
-  max-width: 25rem;
+  width: 30rem;
+  max-width: 30rem;
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.2);
   height: 100%;
   padding: 1rem;
+  overflow: scroll;
 
   .gui-card {
     cursor: pointer;
