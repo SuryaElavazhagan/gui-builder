@@ -21,7 +21,7 @@ function GutterEditor({ names, values, handleInput }: GutterProps) {
   }, []);
 
   function handleSetIsAppliedToAllSides(event: ChangeEvent<HTMLInputElement>) {
-    setIsAppliedToAllSides(event.currentTarget.value === 'yes');
+    setIsAppliedToAllSides(event.currentTarget.checked);
   }
 
   return (
