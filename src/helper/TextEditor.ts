@@ -55,21 +55,6 @@ export class TextEditor {
 
   private static setupKeyboardShortcuts() {
     TextEditor.unsubscribe = tinykeys(TextEditor.ref, {
-      '$mod+KeyC': (event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        TextEditor.handleCommand('copy', undefined);
-      },
-      '$mod+KeyV': (event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        TextEditor.handleCommand('paste', undefined);
-      },
-      '$mod+KeyX': (event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        TextEditor.handleCommand('cut', undefined);
-      },
       '$mod+KeyB': (event) => {
         event.stopPropagation();
         event.preventDefault();
