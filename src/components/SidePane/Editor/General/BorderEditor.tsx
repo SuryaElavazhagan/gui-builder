@@ -1,10 +1,9 @@
-import { ChangeEvent, FormEvent, useContext, useEffect, useState } from 'react';
+import { FormEvent, useContext, useEffect, useState } from 'react';
 import Select, { ValueType } from 'react-select';
 import { BORDER_TYPES } from '../../../../constants/border.constants';
 import { Builder } from '../../../../context/builder.context';
 import { StyleParser } from '../../../../helper/StyleParser';
 import { SelectOptions } from '../../../../interfaces/Select';
-import Toggle from 'react-toggle';
 import { ColorResult, TwitterPicker } from 'react-color';
 import GutterEditor from './GutterEditor';
 
@@ -12,9 +11,7 @@ function BorderEditor() {
   const { state } = useContext(Builder);
   const [borderType, setBorderType] = useState({ label: '', value: '' });
   const [borderWidth, setBorderWidth] = useState<number[]>([]);
-  const [isWidthAppliedToAllSides, setIsWidthAppliedToAllSides] = useState(false);
   const [borderRadius, setBorderRadius] = useState<number[]>([]);
-  const [isRadiusAppliedToAllSides, setIsRadiusAppliedToAllSides] = useState(false);
   const [borderColor, setBorderColor] = useState('');
 
   useEffect(() => {
@@ -27,8 +24,6 @@ function BorderEditor() {
     setBorderType(borderValue);
     setBorderWidth(_borderWidth);
     setBorderRadius(_borderRadius);
-    setIsWidthAppliedToAllSides(StyleParser.isAppliedToAllSides(_borderWidth));
-    setIsRadiusAppliedToAllSides(StyleParser.isAppliedToAllSides(_borderRadius));
   }, [state.selectedElement]);
 
   function handleBorderTypeChange(value: ValueType<SelectOptions>) {
@@ -41,14 +36,6 @@ function BorderEditor() {
     setBorderType(value as SelectOptions);
     setBorderWidth(new Array(4).fill(1));
     setBorderColor('#000000');
-  }
-
-  function handleSetAllSideWidth(event: ChangeEvent<HTMLInputElement>) {
-    setIsWidthAppliedToAllSides(event.currentTarget.value === 'yes');
-  }
-
-  function handleSetAllSideRadius(event: ChangeEvent<HTMLInputElement>) {
-    setIsRadiusAppliedToAllSides(event.currentTarget.value === 'yes');
   }
 
   function handleBorderWidthChange(event: FormEvent<HTMLInputElement>) {
@@ -94,32 +81,11 @@ function BorderEditor() {
       return (
         <div>
           <h5>Border Width: </h5>
-          <div className="gui-gutter-apply-to-all-sides">
-            <span>
-              Apply to all sides
-            </span>
-            <Toggle
-              checked={isWidthAppliedToAllSides}
-              onChange={handleSetAllSideWidth}
-            />
-          </div>
-          {
-            isWidthAppliedToAllSides ? (
-              <input
-                className="gui-element-text-input"
-                type="number"
-                name="all"
-                value={borderWidth[0]}
-                onInput={handleBorderWidthChange}
-              />
-            ) : (
-              <GutterEditor
-                names={['Top', 'Right', 'Bottom', 'Left']}
-                values={borderWidth}
-                handleInput={handleBorderWidthChange}
-              />
-            )
-          }
+          <GutterEditor
+            names={['Top', 'Right', 'Bottom', 'Left']}
+            values={borderWidth}
+            handleInput={handleBorderWidthChange}
+          />
         </div>
       );
     }
@@ -130,32 +96,11 @@ function BorderEditor() {
       return (
         <div>
           <h5>Border Radius: </h5>
-          <div className="gui-gutter-apply-to-all-sides">
-            <span>
-              Apply to all sides
-            </span>
-            <Toggle
-              checked={isRadiusAppliedToAllSides}
-              onChange={handleSetAllSideRadius}
-            />
-          </div>
-          {
-            isRadiusAppliedToAllSides ? (
-              <input
-                className="gui-element-text-input"
-                type="number"
-                name="all"
-                value={borderRadius[0]}
-                onInput={handleBorderRadiusChange}
-              />
-            ) : (
-              <GutterEditor
-                names={['Top Left', 'Top Right', 'Bottom Right', 'Bottom Left']}
-                values={borderRadius}
-                handleInput={handleBorderRadiusChange}
-              />
-            )
-          }
+          <GutterEditor
+            names={['Top Left', 'Top Right', 'Bottom Right', 'Bottom Left']}
+            values={borderRadius}
+            handleInput={handleBorderRadiusChange}
+          />
         </div>
       );
     }
