@@ -1,6 +1,7 @@
-import { DragEvent, MouseEvent, useContext } from 'react';
+import { DragEvent, MouseEvent, useContext, useEffect } from 'react';
 import { DOM } from '../constants/dom.constants';
 import { Builder } from '../context/builder.context';
+import { LocalStorage } from '../helper/LocalStorage';
 import { dom } from '../services/DOM.service';
 import { mask } from '../services/Mask.service';
 import '../styles/components/builder-pane.scss';
@@ -8,6 +9,17 @@ import '../styles/components/builder-pane.scss';
 function BuilderPane() {
 
   const { dispatch } = useContext(Builder);
+
+  useEffect(() => {
+    LocalStorage.restore();
+    const id = window.setInterval(() => {
+      LocalStorage.save();
+    }, 5000);
+
+    return () => {
+      window.clearInterval(id);
+    }
+  }, []);
 
   function handleDragOver(event: DragEvent) {
     event.preventDefault();

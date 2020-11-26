@@ -1,3 +1,5 @@
+@import '../components/button.scss';
+
 .gui-side-pane {
   width: 30rem;
   max-width: 30rem;
@@ -5,6 +7,24 @@
   height: 100%;
   padding: 1rem;
   overflow: scroll;
+
+  .gui-elements-pane-separator {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 2rem 0;
+    padding: 0;
+  }
+
+  .gui-editor-clear-button {
+    @include make-button(#ef5350);
+  }
+
+  .gui-editor-save-button {
+    margin: 0 1rem 0 0;
+    @include make-button(#BA68C8);
+  }
 
   .gui-card {
     cursor: pointer;

@@ -9,6 +9,8 @@ import { GUI_ELEMENTS } from '../../constants/element.constants';
 import RichTextEditor from './Editor/Specifics/RichTextEditor';
 import TextInputEditor from './Editor/Specifics/TextInputEditor';
 import ButtonEditor from './Editor/Specifics/ButtonEditor';
+import { DOM } from '../../constants/dom.constants';
+import { LocalStorage } from '../../helper/LocalStorage';
 
 function SidePane(): JSX.Element {
   const { state, dispatch } = useContext(Builder);
@@ -51,6 +53,15 @@ function SidePane(): JSX.Element {
     setSelectedTab(target.id.replace('gui-editor-tab-', ''));
   }
 
+  function handleClear() {
+    const root = document.getElementById(DOM.BUILDER_ROOT_ID) as HTMLElement;
+    // It's faster than emptying innerHTML
+    while (root.lastElementChild) {
+      root.removeChild(root.lastElementChild);
+    }
+    mask.hideHoverMask();
+  }
+
   function renderCurrentTab() {
     if (selectedTab === 'general') {
       return <GeneralEditor />
@@ -71,6 +82,21 @@ function SidePane(): JSX.Element {
       <aside className="gui-side-pane">
         <h3>Elements</h3>
         <GUIElements handleDragStart={handleDragStart} />
+        <hr className="gui-elements-pane-separator" />
+        <div>
+          <button
+            className="gui-editor-button gui-editor-save-button"
+            onClick={LocalStorage.save}
+          >
+            Save
+          </button>
+          <button
+            className="gui-editor-button gui-editor-clear-button"
+            onClick={handleClear}
+          >
+            Clear
+          </button>
+        </div>
       </aside>
     );
   }
