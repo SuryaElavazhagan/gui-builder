@@ -156,7 +156,9 @@ export class TextEditor {
 
   public static detach() {
     if (TextEditor.ref) {
-      TextEditor.unsubscribe();
+      if (TextEditor.unsubscribe) {
+        TextEditor.unsubscribe();
+      }
       TextEditor.ref.removeEventListener('dblclick', TextEditor.handleDoubleClick);
       TextEditor.ref.removeEventListener('blur', TextEditor.handleBlur);
       TextEditor.ref.removeAttribute('contenteditable');
