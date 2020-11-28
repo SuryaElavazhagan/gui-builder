@@ -1,5 +1,6 @@
 import { DragEvent } from 'react';
 import text from '../../assets/icons/text.png';
+import heading from '../../assets/icons/heading.png';
 import textInput from '../../assets/icons/text-input.png';
 import button from '../../assets/icons/button.png';
 import image from '../../assets/icons/image.png';
@@ -15,6 +16,15 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
       <div
         className="gui-card"
         draggable={true}
+        data-type={GUI_ELEMENTS.HEADING}
+        onDragStart={handleDragStart}
+      >
+        <img className="gui-element-icon" src={heading} alt="text" />
+        <span className="gui-element-label">Heading</span>
+      </div>
+      <div
+        className="gui-card"
+        draggable={true}
         data-type={GUI_ELEMENTS.TEXT}
         onDragStart={handleDragStart}
       >
@@ -24,11 +34,11 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
       <div
         className="gui-card"
         draggable={true}
-        data-type={GUI_ELEMENTS.BUTTON}
+        data-type={GUI_ELEMENTS.IMAGE}
         onDragStart={handleDragStart}
       >
-        <img className="gui-element-icon" src={button} alt="text" />
-        <span className="gui-element-label">Button</span>
+        <img className="gui-element-icon" src={image} alt="text" />
+        <span className="gui-element-label">Image</span>
       </div>
       <div
         className="gui-card"
@@ -42,11 +52,11 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
       <div
         className="gui-card"
         draggable={true}
-        data-type={GUI_ELEMENTS.IMAGE}
+        data-type={GUI_ELEMENTS.BUTTON}
         onDragStart={handleDragStart}
       >
-        <img className="gui-element-icon" src={image} alt="text" />
-        <span className="gui-element-label">Image</span>
+        <img className="gui-element-icon" src={button} alt="text" />
+        <span className="gui-element-label">Button</span>
       </div>
     </>
   );

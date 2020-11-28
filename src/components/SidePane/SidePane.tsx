@@ -67,7 +67,9 @@ function SidePane(): JSX.Element {
     } else if (selectedTab === 'specific') {
       const ref = document.getElementById(state.selectedElement) as HTMLElement;
       switch (ref.dataset.type) {
-        case GUI_ELEMENTS.TEXT: return <RichTextEditor />;
+        case GUI_ELEMENTS.TEXT:
+        case GUI_ELEMENTS.HEADING:
+          return <RichTextEditor />;
         case GUI_ELEMENTS.TEXT_INPUT: return <TextInputEditor />;
         case GUI_ELEMENTS.BUTTON: return <ButtonEditor />;
         case GUI_ELEMENTS.IMAGE: return <ImageEditor />;

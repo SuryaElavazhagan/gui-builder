@@ -7,7 +7,8 @@ class DOMService {
     let element: HTMLElement;
     switch (type) {
       case GUI_ELEMENTS.TEXT:
-        element = document.createElement('p');
+      case GUI_ELEMENTS.HEADING:
+        element = document.createElement(GUI_ELEMENTS.HEADING === type ? 'h1' : 'p');
         element.innerText = DOM.DEFAULTS.TEXT;
         element.classList.add(DOM.CLASSES.TEXT);
         break;
