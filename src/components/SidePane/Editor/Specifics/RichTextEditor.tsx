@@ -17,44 +17,42 @@ import '../../../../styles/components/rich-text-editor.scss';
 
 function RichTextEditor() {
   const { state } = useContext(Builder);
-  let textEditor = new TextEditor();
-  
   useEffect(() => {
     const ref = document.getElementById(state.selectedElement) as HTMLElement;
-    textEditor.attach(ref);
+    TextEditor.attach(ref);
 
     return function cleanup() {
-      textEditor.detach();
+      TextEditor.detach();
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectedElement]);
 
   function handleFontFamilyChange(value: ValueType<SelectOptions>) {
     if ((value as SelectOptions).value !== 'none') {
-      textEditor.focus();
-      textEditor.handleCommand('fontname', (value as SelectOptions).value);
+      TextEditor.focus();
+      TextEditor.handleCommand('fontname', (value as SelectOptions).value);
     }
   }
 
   function handleFontSizeChange(value: ValueType<SelectOptions>) {
     if ((value as SelectOptions).value !== 'none') {
-      textEditor.focus();
-      textEditor.handleCommand('fontsize', (value as SelectOptions).value);
+      TextEditor.focus();
+      TextEditor.handleCommand('fontsize', (value as SelectOptions).value);
     }
   }
 
   function handleTextEdit(event: MouseEvent) {
     const target = event.currentTarget as HTMLElement;
-    textEditor.focus();
-    textEditor.handleCommand(target.dataset.type as keyof TextEditCommands, undefined);
+    TextEditor.focus();
+    TextEditor.handleCommand(target.dataset.type as keyof TextEditCommands, undefined);
   }
 
   return (
     <div className="gui-rich-text-editor">
       <h5>Font Family: </h5>
-      <Select options={FONT_FAMILIES} value={FONT_FAMILIES[0]} onMenuOpen={textEditor.focus} onChange={handleFontFamilyChange} />
+      <Select options={FONT_FAMILIES} value={FONT_FAMILIES[0]} onMenuOpen={TextEditor.focus} onChange={handleFontFamilyChange} />
       <h5>Font Size: </h5>
-      <Select options={FONT_SIZES} value={FONT_SIZES[0]} onMenuOpen={textEditor.focus} onChange={handleFontSizeChange} />
+      <Select options={FONT_SIZES} value={FONT_SIZES[0]} onMenuOpen={TextEditor.focus} onChange={handleFontSizeChange} />
       <h5>Format: </h5>
       <img onClick={handleTextEdit} className="gui-format-icons" data-type="bold" src={bold} alt="Bold" />
       <img onClick={handleTextEdit} className="gui-format-icons" data-type="italic" src={italic} alt="Italic" />

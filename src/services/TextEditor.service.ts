@@ -24,100 +24,101 @@ interface Selection {
 }
 
 export class TextEditor {
-  private ref: HTMLElement | undefined;
-  private selection: Selection | undefined;
-  private unsubscribe: (() => void) | undefined;
+  private static ref: HTMLElement;
+  private static selection: Selection | undefined;
+  private static unsubscribe: () => void;
 
-  private handleDoubleClick() {
-    this.ref!.contentEditable = "true";
+  private static handleDoubleClick() {
+    TextEditor.ref.contentEditable = "true";
     document.execCommand("defaultParagraphSeparator", false, "div");
-    this.setupKeyboardShortcuts();
-    this.ref!.focus();
-    this.ref!.addEventListener('blur', this.handleBlur);
+    TextEditor.setupKeyboardShortcuts();
+    TextEditor.ref.focus();
+    TextEditor.ref.addEventListener('blur', TextEditor.handleBlur);
+    TextEditor.ref.removeEventListener('dblclick', TextEditor.handleDoubleClick);
   }
 
-  private handleBlur() {
+  private static handleBlur() {
     // Reference: https://stackoverflow.com/questions/13949059/persisting-the-changes-of-range-objects-after-selection-in-html
     // I just don't want to waste time in writing own text restoring. Sorry :p
     const selection = window.getSelection();
     if (selection && selection.rangeCount > 0) {
       const range = selection.getRangeAt(0);
       const clonedRange = range.cloneRange();
-      clonedRange.selectNodeContents(this.ref!);
+      clonedRange.selectNodeContents(TextEditor.ref);
       clonedRange.setEnd(range.startContainer, range.startOffset);
       const start = clonedRange.toString().length;
-      this.selection = {
+      TextEditor.selection = {
         start,
         end: start + range.toString().length
       };
     }
   }
 
-  private setupKeyboardShortcuts() {
-    this.unsubscribe = tinykeys(this.ref!, {
+  private static setupKeyboardShortcuts() {
+    TextEditor.unsubscribe = tinykeys(TextEditor.ref, {
       '$mod+KeyB': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('bold', undefined);
+        TextEditor.handleCommand('bold', undefined);
       },
       '$mod+KeyI': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('italic', undefined);
+        TextEditor.handleCommand('italic', undefined);
       },
       '$mod+KeyU': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('underline', undefined);
+        TextEditor.handleCommand('underline', undefined);
       },
       '$mod+Shift+KeyS': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('strikeThrough', undefined);
+        TextEditor.handleCommand('strikeThrough', undefined);
       },
       '$mod+Shift+KeyL': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('justifyleft', undefined);
+        TextEditor.handleCommand('justifyleft', undefined);
       },
       '$mod+Shift+KeyE': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('justifycenter', undefined);
+        TextEditor.handleCommand('justifycenter', undefined);
       },
       '$mod+Shift+KeyJ': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('justifyFull', undefined);
+        TextEditor.handleCommand('justifyFull', undefined);
       },
       '$mod+Shift+KeyR': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        this.handleCommand('justifyright', undefined);
+        TextEditor.handleCommand('justifyright', undefined);
       }
     });
   }
 
-  public focus() {
-    if (this.selection !== undefined) {
+  public static focus() {
+    if (TextEditor.selection !== undefined) {
       let charIndex = 0;
       let foundStart = false;
       let stop = false;
       const range = document.createRange();
-      range.setStart(this.ref!, 0);
+      range.setStart(TextEditor.ref, 0);
       range.collapse(true);
-      const nodeStack: Node[] = [this.ref!];
+      const nodeStack: Node[] = [TextEditor.ref];
       let node;
 
       while (!stop && (node = nodeStack.pop())) {
         if (node.nodeType === 3) {
           const nextCharIndex = charIndex + (node.textContent?.length ?? 0);
-          if (!foundStart && this.selection.start >= charIndex && this.selection.start <= nextCharIndex) {
-            range.setStart(node, this.selection.start - charIndex);
+          if (!foundStart && TextEditor.selection.start >= charIndex && TextEditor.selection.start <= nextCharIndex) {
+            range.setStart(node, TextEditor.selection.start - charIndex);
             foundStart = true;
           }
-          if (foundStart && this.selection.end >= charIndex && this.selection.end <= nextCharIndex) {
-            range.setEnd(node, this.selection.end - charIndex);
+          if (foundStart && TextEditor.selection.end >= charIndex && TextEditor.selection.end <= nextCharIndex) {
+            range.setEnd(node, TextEditor.selection.end - charIndex);
             stop = true;
           }
           charIndex = nextCharIndex;
@@ -134,29 +135,28 @@ export class TextEditor {
         selection.removeAllRanges();
         selection.addRange(range);
       }
-      this.selection = undefined;
+      TextEditor.selection = undefined;
     }
-    this.ref!.focus();
+    TextEditor.ref.focus();
   }
   
-  public attach(ref: HTMLElement) {
-    this.ref = ref;
-    ref.addEventListener('dblclick', this.handleDoubleClick);
+  public static attach(ref: HTMLElement) {
+    TextEditor.ref = ref;
+    ref.addEventListener('dblclick', TextEditor.handleDoubleClick);
   }
 
-  public handleCommand<T extends keyof TextEditCommands>(command: T, payload: TextEditCommands[T]) {
+  public static handleCommand<T extends keyof TextEditCommands>(command: T, payload: TextEditCommands[T]) {
     document.execCommand(command, false, payload);
-    this.ref!.focus();
+    TextEditor.ref.focus();
   }
 
-  public detach() {
-    if (this.ref) {
-      if (this.unsubscribe) {
-        this.unsubscribe();
+  public static detach() {
+    if (TextEditor.ref) {
+      if (TextEditor.unsubscribe) {
+        TextEditor.unsubscribe();
       }
-      this.ref.removeEventListener('dblclick', this.handleDoubleClick);
-      this.ref.removeEventListener('blur', this.handleBlur);
-      this.ref.removeAttribute('contenteditable');
+      TextEditor.ref.removeEventListener('blur', TextEditor.handleBlur);
+      TextEditor.ref.removeAttribute('contenteditable');
     }
   }
 }
