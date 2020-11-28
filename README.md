@@ -9,7 +9,7 @@ yarn start
 ```
 
 ## Builder Structure
-- There are three elements available:
+- Elements available:
   - Text / Heading
   - Button
   - Image
