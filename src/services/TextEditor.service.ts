@@ -4,6 +4,7 @@ export interface TextEditCommands {
   'bold': undefined;
   'italic': undefined;
   'underline': undefined;
+  'createLink': string;
   'strikeThrough': undefined;
   'justifyleft': undefined;
   'justifycenter': undefined;
@@ -70,6 +71,14 @@ export class TextEditor {
         event.stopPropagation();
         event.preventDefault();
         TextEditor.handleCommand('underline', undefined);
+      },
+      '$mod+KeyK': (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        const link = window.prompt('Enter the link:');
+        if (link !== null) {
+          TextEditor.handleCommand('createLink', link);
+        }
       },
       '$mod+Shift+KeyS': (event) => {
         event.stopPropagation();
