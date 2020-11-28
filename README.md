@@ -8,8 +8,28 @@ yarn
 yarn start
 ```
 
+## Builder Structure
+- There are three elements available:
+  - Text
+  - Button
+  - Text Input
+- Elements can be added to the builder area via drag-n-drop
+- Select (Click) the element to edit it's properties
+- Properties are divided into two panes: `General` and `Specific`
+  - `General`: Tab consists of all the general properties like: Inner Spacing (Padding), Outer Spacing (Margin),
+  Shadow, Border Style, Border Width, Border Radius, Background color
+  - `Specific`: Tab consists of all the element-specific properties. For example: Text element consists of all the formatting
+  options like: Bold, Italic, Underline, etc.
+- Like other web-ui builders, I didn't use iframes for holding all the design. I don't want to complicate things (since this is a very small app). Anyway, the HTML string will be sanitized by [dompurify](https://www.npmjs.com/package/dompurify) before getting into localstorage
+- All the changes get saved to localstorage, every five seconds. You can also save changes manually using the button in side pane.
+
+## Drag n Drop
+- Drag elements from Side Pane or Elements inside the builder
+- You can only drop elements inside the builder area (one with dotted black border)
+- Hold `Shift` to drag-n-drop the element in absolute position mode
+
 ## Text Editing
-- In order to edit a text, select the particular text and choose `Specific` tab and double click the text
+- In order to edit a text, select the particular text and choose `Specific` tab (it's the default tab) and double click the text
 - You can use the following keyboard shortcuts while editing text
 
 Shortcut | Description

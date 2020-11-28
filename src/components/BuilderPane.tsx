@@ -2,7 +2,6 @@ import { DragEvent, MouseEvent, useContext, useEffect } from 'react';
 import { DOM } from '../constants/dom.constants';
 import { Builder } from '../context/builder.context';
 import { LocalStorage } from '../helper/LocalStorage';
-import { dom } from '../services/DOM.service';
 import { DragAndDrop } from '../services/DragAndDrop.service';
 import { mask } from '../services/Mask.service';
 import '../styles/components/builder-pane.scss';
@@ -12,7 +11,7 @@ function BuilderPane() {
   const { dispatch } = useContext(Builder);
 
   useEffect(() => {
-    DragAndDrop.setupDragIndicator();
+    DragAndDrop.initialize();
     LocalStorage.restore();
     const id = window.setInterval(() => {
       LocalStorage.save();
@@ -32,15 +31,6 @@ function BuilderPane() {
   function handleDragLeave(event: DragEvent) {
     const target = event.currentTarget as HTMLElement;
     target.style.borderColor = '';
-  }
-
-  function handleDrop(event: DragEvent) {
-    event.preventDefault();
-    const root = event.currentTarget as HTMLElement;
-    const type = event.dataTransfer.getData("text/plain");
-    const element = dom.create(type);
-    root.appendChild(element);
-    DragAndDrop.attach(element);
   }
 
   function filterElementFromEvent(event: MouseEvent): HTMLElement | null {
@@ -99,7 +89,6 @@ function BuilderPane() {
         className="gui-inner-wrapper"
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
         onClick={handleClick}
