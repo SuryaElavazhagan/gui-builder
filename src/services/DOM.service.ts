@@ -19,6 +19,9 @@ class DOMService {
       case GUI_ELEMENTS.TEXT_INPUT:
         element = this.createInput();
         break;
+      case GUI_ELEMENTS.IMAGE:
+        element = this.createImage();
+        break;
       default:
         throw Error('Invalid element type');
     }
@@ -44,6 +47,14 @@ class DOMService {
     wrapper.append(label, input);
 
     return wrapper;
+  }
+
+  private createImage(): HTMLImageElement {
+    const image = document.createElement('img');
+    image.src = DOM.DEFAULTS.IMAGE_SRC;
+    image.style.width = image.style.height = '300px';
+    image.style.objectFit = 'contain';
+    return image;
   }
 
   private generateID() {

@@ -11,6 +11,7 @@ import TextInputEditor from './Editor/Specifics/TextInputEditor';
 import ButtonEditor from './Editor/Specifics/ButtonEditor';
 import { DOM } from '../../constants/dom.constants';
 import { LocalStorage } from '../../helper/LocalStorage';
+import ImageEditor from './Editor/Specifics/ImageEditor';
 
 function SidePane(): JSX.Element {
   const { state, dispatch } = useContext(Builder);
@@ -68,7 +69,8 @@ function SidePane(): JSX.Element {
       switch (ref.dataset.type) {
         case GUI_ELEMENTS.TEXT: return <RichTextEditor />;
         case GUI_ELEMENTS.TEXT_INPUT: return <TextInputEditor />;
-        case GUI_ELEMENTS.BUTTON: return <ButtonEditor />
+        case GUI_ELEMENTS.BUTTON: return <ButtonEditor />;
+        case GUI_ELEMENTS.IMAGE: return <ImageEditor />;
         default: throw new Error('Invalid element type');
       }
     }

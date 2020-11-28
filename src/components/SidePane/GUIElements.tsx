@@ -2,6 +2,7 @@ import { DragEvent } from 'react';
 import text from '../../assets/icons/text.png';
 import textInput from '../../assets/icons/text-input.png';
 import button from '../../assets/icons/button.png';
+import image from '../../assets/icons/image.png';
 import { GUI_ELEMENTS } from '../../constants/element.constants';
 
 interface GUIElementsProps {
@@ -37,6 +38,15 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
       >
         <img className="gui-element-icon" src={textInput} alt="text" />
         <span className="gui-element-label">Text Input</span>
+      </div>
+      <div
+        className="gui-card"
+        draggable={true}
+        data-type={GUI_ELEMENTS.IMAGE}
+        onDragStart={handleDragStart}
+      >
+        <img className="gui-element-icon" src={image} alt="text" />
+        <span className="gui-element-label">Image</span>
       </div>
     </>
   );
