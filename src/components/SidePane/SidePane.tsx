@@ -1,6 +1,6 @@
 import { DragEvent, useContext, MouseEvent, useState, useEffect } from 'react';
 import GUIElements from './GUIElements';
-import GeneralEditor from './Editor/GeneralEditor';
+import GeneralEditor from './Editor/General/GeneralEditor';
 import { Builder } from '../../context/builder.context';
 import { mask } from '../../services/Mask.service';
 import back from '../../assets/icons/back.svg';

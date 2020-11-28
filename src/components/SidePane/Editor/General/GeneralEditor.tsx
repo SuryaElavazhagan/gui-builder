@@ -1,11 +1,11 @@
 import Collapse from 'rc-collapse';
 import { TwitterPicker } from 'react-color';
-import BackgroundEditor from './General/BackgroundEditor';
-import BorderEditor from './General/BorderEditor';
-import SpacingEditor from './General/SpacingEditor';
+import BackgroundEditor from './BackgroundEditor';
+import BorderEditor from './BorderEditor';
+import SpacingEditor from './SpacingEditor';
 import '../../../styles/components/general-editor.scss';
 import { useContext } from 'react';
-import { Builder } from '../../../context/builder.context';
+import { Builder } from '../../../../context/builder.context';
 
 interface GeneralEditorProps {
   handleDeselection: () => void;
