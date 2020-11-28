@@ -1,6 +1,7 @@
 import { DOM } from "../constants/dom.constants";
 import { STORAGE } from "../constants/storage.constants";
 import DOMPurify from 'dompurify';
+import { DragAndDrop } from "../services/DragAndDrop.service";
 
 export class LocalStorage {
   public static restore() {
@@ -8,6 +9,10 @@ export class LocalStorage {
     const root = document.getElementById(DOM.BUILDER_ROOT_ID);
     if (dom !== null && root !== null) {
       root.innerHTML = dom;
+      
+      root.childNodes.forEach(node => {
+        DragAndDrop.attach(node as HTMLElement);
+      });
     }
   }
 

@@ -24,6 +24,7 @@ class DOMService {
     }
     element.id = this.generateID();
     element.dataset.type = type;
+    element.draggable = true;
 
     return element;
   }

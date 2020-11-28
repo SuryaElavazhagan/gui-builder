@@ -1,5 +1,6 @@
 export const DOM = {
-  BUILDER_ROOT_ID: 'builder',
+  BUILDER_ROOT_ID: 'gui-builder',
+  DROP_INDICATOR: 'gui-drop-indicator',
   DEFAULTS: {
     TEXT: 'Consequatur atque sed eum et praesentium et et ut. Laboriosam ullam omnis cupiditate. Dolorum totam alias enim',
     BUTTON_LABEL: 'SUBMIT',

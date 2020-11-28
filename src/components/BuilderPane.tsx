@@ -3,6 +3,7 @@ import { DOM } from '../constants/dom.constants';
 import { Builder } from '../context/builder.context';
 import { LocalStorage } from '../helper/LocalStorage';
 import { dom } from '../services/DOM.service';
+import { DragAndDrop } from '../services/DragAndDrop.service';
 import { mask } from '../services/Mask.service';
 import '../styles/components/builder-pane.scss';
 
@@ -11,6 +12,7 @@ function BuilderPane() {
   const { dispatch } = useContext(Builder);
 
   useEffect(() => {
+    DragAndDrop.setupDragIndicator();
     LocalStorage.restore();
     const id = window.setInterval(() => {
       LocalStorage.save();
@@ -34,10 +36,11 @@ function BuilderPane() {
 
   function handleDrop(event: DragEvent) {
     event.preventDefault();
+    const root = event.currentTarget as HTMLElement;
     const type = event.dataTransfer.getData("text/plain");
     const element = dom.create(type);
-    const root = document.getElementById(DOM.BUILDER_ROOT_ID) as HTMLElement;
     root.appendChild(element);
+    DragAndDrop.attach(element);
   }
 
   function filterElementFromEvent(event: MouseEvent): HTMLElement | null {
