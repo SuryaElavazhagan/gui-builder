@@ -1,3 +1,4 @@
 export const STORAGE = {
-  DOM: 'DOM'
+  DOM: 'dom',
+  BACKGROUND: 'background'
 };

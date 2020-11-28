@@ -12,10 +12,17 @@ import ButtonEditor from './Editor/Specifics/ButtonEditor';
 import { DOM } from '../../constants/dom.constants';
 import { LocalStorage } from '../../helper/LocalStorage';
 import ImageEditor from './Editor/Specifics/ImageEditor';
+import { ColorResult, TwitterPicker } from 'react-color';
+import { STORAGE } from '../../constants/storage.constants';
 
 function SidePane(): JSX.Element {
   const { state, dispatch } = useContext(Builder);
   const [selectedTab, setSelectedTab] = useState('');
+  const [background, setBackground] = useState('');
+
+  useEffect(() => {
+    setBackground(window.localStorage.getItem(STORAGE.BACKGROUND) ?? 'rgba(0,0,0,0)');
+  }, []);
 
   useEffect(() => {
     const tabRef = document.getElementById(`gui-editor-tab-${selectedTab}`);
@@ -31,6 +38,12 @@ function SidePane(): JSX.Element {
   useEffect(() => {
     setSelectedTab('specific');
   }, [state.selectedElement]);
+
+  function handleBackgroundChange(color: ColorResult) {
+    const root = document.getElementById(DOM.BUILDER_ROOT_ID) as HTMLElement;
+    root.style.background = color.hex;
+    setBackground(color.hex);
+  }
   
   function handleDragStart(event: DragEvent) {
     const target = event.currentTarget as HTMLElement;
@@ -58,6 +71,8 @@ function SidePane(): JSX.Element {
     while (root.lastElementChild) {
       root.removeChild(root.lastElementChild);
     }
+    root.style.background = 'transparent';
+    setBackground('rgba(0,0,0,0)');
     mask.hideHoverMask();
   }
 
@@ -84,6 +99,13 @@ function SidePane(): JSX.Element {
       <aside className="gui-side-pane">
         <h3>Elements</h3>
         <GUIElements handleDragStart={handleDragStart} />
+        <hr className="gui-elements-pane-separator" />
+        <h5>Page Background: </h5>
+        <TwitterPicker
+          triangle="hide"
+          color={background}
+          onChange={handleBackgroundChange}
+        />
         <hr className="gui-elements-pane-separator" />
         <div>
           <button
