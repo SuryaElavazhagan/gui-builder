@@ -1,0 +1,16 @@
+.gui-gutter {
+  .gui-gutter-apply-to-all-sides {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 0.3125rem 0;
+  }
+
+  .gui-gutter-upper-half,
+  .gui-gutter-lower-half {
+    display: flex;
+
+    div:first-child {
+      margin-right: 0.2rem;
+    }
+  }
+}

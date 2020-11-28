@@ -1,0 +1,24 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+// Overriding custom font size set by browsers
+html, body {
+  font-size: 16px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+}
+
+.gui-drop-indicator {
+  position: absolute;
+  height: 0.1875rem;
+  background-color: #BA68C8;
+}

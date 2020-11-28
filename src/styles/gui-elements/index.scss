@@ -1,0 +1,7 @@
+// All elements use px instead of rem (whole app uses rem)
+// since, the output html can be used anywhere
+
+@import './elements/text.scss';
+@import './elements/button.scss';
+@import './elements/text-input.scss';
+@import './utilities/mask.scss';
