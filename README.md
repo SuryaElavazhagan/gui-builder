@@ -10,8 +10,9 @@ yarn start
 
 ## Builder Structure
 - There are three elements available:
-  - Text
+  - Text / Heading
   - Button
+  - Image
   - Text Input
 - Elements can be added to the builder area via drag-n-drop
 - Select (Click) the element to edit it's properties
@@ -37,6 +38,7 @@ Shortcut | Description
 `META+B` | Bold
 `META+I` | Italic
 `META+U` | Underline
+`META+K` | Link
 `META+SHIFT+S` | Strikethrough
 `META+SHIFT+L` | Align left
 `META+SHIFT+R` | Align right
