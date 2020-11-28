@@ -75,10 +75,7 @@ export class TextEditor {
       '$mod+KeyK': (event) => {
         event.stopPropagation();
         event.preventDefault();
-        const link = window.prompt('Enter the link:');
-        if (link !== null) {
-          TextEditor.handleCommand('createLink', link);
-        }
+        TextEditor.addLink();
       },
       '$mod+Shift+KeyS': (event) => {
         event.stopPropagation();
@@ -157,6 +154,13 @@ export class TextEditor {
   public static handleCommand<T extends keyof TextEditCommands>(command: T, payload: TextEditCommands[T]) {
     document.execCommand(command, false, payload);
     TextEditor.ref.focus();
+  }
+
+  public static addLink() {
+    const link = window.prompt('Enter the link:');
+    if (link !== null) {
+      TextEditor.handleCommand('createLink', link);
+    }
   }
 
   public static detach() {

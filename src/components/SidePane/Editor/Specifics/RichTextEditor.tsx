@@ -12,6 +12,7 @@ import left from '../../../../assets/icons/align-left.png';
 import right from '../../../../assets/icons/align-right.png';
 import center from '../../../../assets/icons/align-center.png';
 import justify from '../../../../assets/icons/align-justify.png';
+import link from '../../../../assets/icons/link.png';
 import '../../../../styles/components/rich-text-editor.scss';
 
 
@@ -58,6 +59,7 @@ function RichTextEditor() {
       <img onClick={handleTextEdit} className="gui-format-icons" data-type="italic" src={italic} alt="Italic" />
       <img onClick={handleTextEdit} className="gui-format-icons" data-type="underline" src={underline} alt="Underline" />
       <img onClick={handleTextEdit} className="gui-format-icons" data-type="strikethrough" src={strikethrough} alt="Strikethrough" />
+      <img onClick={TextEditor.addLink} className="gui-format-icons" src={link} alt="Link"/>
 
       <h5>Alignment: </h5>
       <img onClick={handleTextEdit} className="gui-align-icons" data-type="justifyleft" src={left} alt="Left Align" />
