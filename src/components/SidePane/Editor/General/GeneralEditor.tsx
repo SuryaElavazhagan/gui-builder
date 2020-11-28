@@ -3,7 +3,7 @@ import { TwitterPicker } from 'react-color';
 import BackgroundEditor from './BackgroundEditor';
 import BorderEditor from './BorderEditor';
 import SpacingEditor from './SpacingEditor';
-import '../../../styles/components/general-editor.scss';
+import '../../../../styles/components/general-editor.scss';
 import { useContext } from 'react';
 import { Builder } from '../../../../context/builder.context';
 
