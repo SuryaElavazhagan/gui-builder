@@ -8,9 +8,7 @@ class DOMService {
     switch (type) {
       case GUI_ELEMENTS.TEXT:
       case GUI_ELEMENTS.HEADING:
-        element = document.createElement(GUI_ELEMENTS.HEADING === type ? 'h1' : 'p');
-        element.innerText = DOM.DEFAULTS.TEXT;
-        element.classList.add(DOM.CLASSES.TEXT);
+        element = this.createText(type);
         break;
       case GUI_ELEMENTS.BUTTON:
         element = document.createElement('button');
@@ -39,6 +37,15 @@ class DOMService {
     if (ref.parentElement !== null) {
       ref.parentElement.appendChild(_ref);
     }
+  }
+
+  private createText(type: string) {
+    const wrapper = document.createElement('div');
+    const text = document.createElement(GUI_ELEMENTS.HEADING === type ? 'h1' : 'p')
+    text.innerText = DOM.DEFAULTS.TEXT;
+    wrapper.appendChild(text);
+    wrapper.classList.add(DOM.CLASSES.TEXT);
+    return wrapper;
   }
 
   private createInput() {
