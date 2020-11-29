@@ -33,6 +33,14 @@ class DOMService {
     return element;
   }
 
+  public copy(ref: HTMLElement) {
+    const _ref = ref.cloneNode(true) as HTMLElement;
+    _ref.id = this.generateID();
+    if (ref.parentElement !== null) {
+      ref.parentElement.appendChild(_ref);
+    }
+  }
+
   private createInput() {
     const wrapper = document.createElement('div');
     const label = document.createElement('label');

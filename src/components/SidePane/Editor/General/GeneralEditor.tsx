@@ -7,6 +7,7 @@ import PositionEditor from './PositionEditor';
 import '../../../../styles/components/general-editor.scss';
 import { useContext, useEffect, useState } from 'react';
 import { Builder } from '../../../../context/builder.context';
+import { dom } from '../../../../services/DOM.service';
 
 interface GeneralEditorProps {
   handleDeselection: () => void;
@@ -25,6 +26,11 @@ function GeneralEditor({ handleDeselection }: GeneralEditorProps) {
     const ref = document.getElementById(state.selectedElement) as HTMLElement;
     ref.remove();
     handleDeselection();
+  }
+
+  function handleCopy() {
+    const ref = document.getElementById(state.selectedElement) as HTMLElement;
+    dom.copy(ref);
   }
 
   return (
@@ -51,7 +57,10 @@ function GeneralEditor({ handleDeselection }: GeneralEditorProps) {
         }
       </Collapse>
       <div className="gui-editor-other-settings">
-        <button className="gui-editor-button gui-element-copy">
+        <button
+          className="gui-editor-button gui-element-copy"
+          onClick={handleCopy}
+        >
           Copy
         </button>
         <button 
