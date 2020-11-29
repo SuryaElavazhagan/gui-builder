@@ -17,6 +17,13 @@ body {
   height: 100vh;
 }
 
+// I did not know this 🙈
+// https://stackoverflow.com/questions/20435166/contenteditable-not-working-in-safari-but-works-in-chrome
+[contenteditable] {
+  -webkit-user-select: text;
+  user-select: text;
+}
+
 .gui-drop-indicator {
   position: absolute;
   height: 0.1875rem;
