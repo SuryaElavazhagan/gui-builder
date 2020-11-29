@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/gui-builder/static/css/main.3febd099.chunk.css",
-    "main.js": "/gui-builder/static/js/main.65bfdc19.chunk.js",
+    "main.js": "/gui-builder/static/js/main.0a1af835.chunk.js",
     "runtime-main.js": "/gui-builder/static/js/runtime-main.f99db442.js",
     "static/css/2.36024496.chunk.css": "/gui-builder/static/css/2.36024496.chunk.css",
     "static/js/2.db45a132.chunk.js": "/gui-builder/static/js/2.db45a132.chunk.js",
@@ -17,6 +17,6 @@
     "static/css/2.36024496.chunk.css",
     "static/js/2.db45a132.chunk.js",
     "static/css/main.3febd099.chunk.css",
-    "static/js/main.65bfdc19.chunk.js"
+    "static/js/main.0a1af835.chunk.js"
   ]
 }
