@@ -8,6 +8,13 @@
   .gui-elements-list {
     overflow: scroll;
     padding: 1rem;
+
+    &::after {
+      content: "";
+      display: block;
+      height: 1rem;
+      width: 100%;
+    }
   }
 
   .gui-side-pane-footer {
