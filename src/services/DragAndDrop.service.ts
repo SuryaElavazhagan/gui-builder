@@ -44,6 +44,7 @@ export class DragAndDrop {
       let ref = document.getElementById(idOrName);
       if (ref === null) {
         ref = dom.create(idOrName);
+        target.appendChild(ref);
         DragAndDrop.attach(ref);
       }
       if (event.shiftKey) {
