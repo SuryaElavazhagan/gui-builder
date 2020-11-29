@@ -1,4 +1,4 @@
-import { DragEvent, MouseEvent, useContext, useEffect } from 'react';
+import { UIEvent, DragEvent, MouseEvent, useContext, useEffect } from 'react';
 import { DOM } from '../constants/dom.constants';
 import { Builder } from '../context/builder.context';
 import { LocalStorage } from '../helper/LocalStorage';
@@ -80,6 +80,12 @@ function BuilderPane() {
     }
   }
 
+  function handleScroll(event: UIEvent) {
+    window.requestAnimationFrame(() => {
+      mask.hideHoverMask();
+    });
+  }
+
   return (
     // Not going to use iframe and make the app more complex
     // But for security concerns, while storing the DOM to localstorage
@@ -93,6 +99,9 @@ function BuilderPane() {
         onMouseMove={handleMouseMove}
         onMouseOut={handleMouseOut}
         onClick={handleClick}
+        // I guess making this event passive won't
+        // improve performance that much
+        onScroll={handleScroll}
       />
     </div>
   );
