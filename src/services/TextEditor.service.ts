@@ -101,6 +101,12 @@ export class TextEditor {
         event.stopPropagation();
         event.preventDefault();
         TextEditor.handleCommand('justifyright', undefined);
+      },
+      'Escape': (event) => {
+        event.stopPropagation();
+        event.preventDefault();
+        TextEditor.detach();
+        TextEditor.ref.addEventListener('dblclick', TextEditor.handleDoubleClick);
       }
     });
   }
@@ -169,6 +175,7 @@ export class TextEditor {
         TextEditor.unsubscribe();
       }
       TextEditor.ref.removeEventListener('blur', TextEditor.handleBlur);
+      TextEditor.ref.removeEventListener('dblclick', TextEditor.handleDoubleClick);
       TextEditor.ref.removeAttribute('contenteditable');
     }
   }
