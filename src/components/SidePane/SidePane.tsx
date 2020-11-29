@@ -47,7 +47,7 @@ function SidePane(): JSX.Element {
     root.style.background = color.hex;
     setBackground(color.hex);
   }
-  
+
   function handleDragStart(event: DragEvent) {
     const target = event.currentTarget as HTMLElement;
     const type = target.dataset.type;
@@ -100,38 +100,40 @@ function SidePane(): JSX.Element {
   // If no element is selected, show elements list
   if (state.selectedElement === '') {
     return (
-      <aside className="gui-side-pane">
-        <h3>Elements</h3>
-        <GUIElements handleDragStart={handleDragStart} />
-        <hr className="gui-elements-pane-separator" />
-        <h5>Page Background: </h5>
-        <TwitterPicker
-          triangle="hide"
-          color={background}
-          onChange={handleBackgroundChange}
-        />
-        <hr className="gui-elements-pane-separator" />
-        <div>
-          <button
-            className="gui-editor-button gui-editor-save-button"
-            onClick={LocalStorage.save}
-          >
-            Save
+      <aside className="gui-side-pane gui-side-pane-not-selected">
+        <div className="gui-elements-list">
+          <h3>Elements</h3>
+          <GUIElements handleDragStart={handleDragStart} />
+          <hr className="gui-elements-pane-separator" />
+          <h5>Page Background: </h5>
+          <TwitterPicker
+            triangle="hide"
+            color={background}
+            onChange={handleBackgroundChange}
+          />
+          <hr className="gui-elements-pane-separator" />
+          <div>
+            <button
+              className="gui-editor-button gui-editor-save-button"
+              onClick={LocalStorage.save}
+            >
+              Save
           </button>
-          <button
-            className="gui-editor-button gui-editor-clear-button"
-            onClick={handleClear}
-          >
-            Clear
+            <button
+              className="gui-editor-button gui-editor-clear-button"
+              onClick={handleClear}
+            >
+              Clear
           </button>
+          </div>
         </div>
         <div className="gui-side-pane-footer">
           <a href="https://github.com/SuryaElavazhagan/gui-builder">
-            <img src={github} alt="Github"/>
+            <img src={github} alt="Github" />
             Github
           </a>
           <a href="https://github.com/SuryaElavazhagan/gui-builder/blob/main/README.md">
-            <img src={info} alt="README"/>
+            <img src={info} alt="README" />
             README
           </a>
         </div>
@@ -140,9 +142,9 @@ function SidePane(): JSX.Element {
   }
   // Else, show element editor
   return (
-    <aside className="gui-side-pane">
+    <aside className="gui-side-pane gui-side-pane-selected">
       <h5 className="gui-editor-back" onClick={handleBack}>
-        <img src={back} alt="Back icon"/>
+        <img src={back} alt="Back icon" />
         Back
       </h5>
       <div className="gui-editor-tab-area">
