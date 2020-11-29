@@ -23,6 +23,9 @@ yarn start
   options like: Bold, Italic, Underline, etc.
 - Like other web-ui builders, I didn't use iframes for holding all the design. I don't want to complicate things (since this is a very small app). Anyway, the HTML string will be sanitized by [dompurify](https://www.npmjs.com/package/dompurify) before getting into localstorage
 - All the changes get saved to localstorage, every five seconds. You can also save changes manually using the button in side pane.
+- To deselect an element, you can do any of the following:
+  - Press `Esc` (If you're editing a text, press twice)
+  - Click empty area in Builder (one with dotted black border)
 
 ## Drag n Drop
 - Drag elements from Side Pane or Elements inside the builder
@@ -33,6 +36,7 @@ yarn start
 ## Text Editing
 - In order to edit a text, select the particular text and choose `Specific` tab (it's the default tab) and double click the text
 - You can use the following keyboard shortcuts while editing text
+- You can exit edit mode by pressing `Esc` without deselecting the text
 
 Shortcut | Description
 --------- | ------------
