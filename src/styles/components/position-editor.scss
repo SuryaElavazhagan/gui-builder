@@ -1,0 +1,11 @@
+@import './button.scss';
+
+.gui-position-editor {
+  display: flex;
+  justify-content: space-around;
+
+  .gui-bring-up-button,
+  .gui-bring-down-button {
+    @include make-button(#BA68C8);
+  }
+}

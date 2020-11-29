@@ -3,8 +3,9 @@ import BackgroundEditor from './BackgroundEditor';
 import BorderEditor from './BorderEditor';
 import SpacingEditor from './SpacingEditor';
 import ShadowEditor from './ShadowEditor';
+import PositionEditor from './PositionEditor';
 import '../../../../styles/components/general-editor.scss';
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Builder } from '../../../../context/builder.context';
 
 interface GeneralEditorProps {
@@ -13,6 +14,12 @@ interface GeneralEditorProps {
 
 function GeneralEditor({ handleDeselection }: GeneralEditorProps) {
   const { state } = useContext(Builder);
+  const [showPosition, setShowPosition] = useState(false);
+
+  useEffect(() => {
+    const ref = document.getElementById(state.selectedElement) as HTMLElement;
+    setShowPosition(ref.dataset.absolute === 'true');
+  }, [state.selectedElement]);
 
   function handleDelete() {
     const ref = document.getElementById(state.selectedElement) as HTMLElement;
@@ -35,6 +42,13 @@ function GeneralEditor({ handleDeselection }: GeneralEditorProps) {
         <Collapse.Panel header="Shadow">
           <ShadowEditor />
         </Collapse.Panel>
+        {
+          showPosition ? (
+            <Collapse.Panel header="Position">
+              <PositionEditor />
+            </Collapse.Panel>
+          ) : undefined
+        }
       </Collapse>
       <div className="gui-editor-other-settings">
         <button className="gui-editor-button gui-element-copy">
