@@ -28,6 +28,7 @@ yarn start
 - Drag elements from Side Pane or Elements inside the builder
 - You can only drop elements inside the builder area (one with dotted black border)
 - Hold `Shift` to drag-n-drop the element in absolute position mode
+- You can't drop a element below absolute positioned elements
 
 ## Text Editing
 - In order to edit a text, select the particular text and choose `Specific` tab (it's the default tab) and double click the text

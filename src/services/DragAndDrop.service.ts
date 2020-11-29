@@ -15,8 +15,8 @@ export class DragAndDrop {
   private static handleDragOver(event: DragEvent) {
     event.preventDefault();
     event.stopPropagation();
-    if (!event.shiftKey) {
-      const target = event.currentTarget as HTMLElement;
+    const target = event.currentTarget as HTMLElement;
+    if (!event.shiftKey && target.dataset.absolute !== 'true') {
       const dropIndicator = document.getElementById(DOM.DROP_INDICATOR) as HTMLElement;
       const { width, bottom, left } = target.getBoundingClientRect();
       dropIndicator.style.width = `${width}px`;
@@ -34,10 +34,10 @@ export class DragAndDrop {
   }
 
   private static handleDrop(event: DragEvent) {
-    if (event.dataTransfer) {
-      event.preventDefault();
-      event.stopPropagation();
-      const target = event.currentTarget as HTMLElement;
+    event.preventDefault();
+    event.stopPropagation();
+    const target = event.currentTarget as HTMLElement;
+    if (event.dataTransfer && target.dataset.absolute !== 'true') {
       const parent = (target.id === DOM.BUILDER_ROOT_ID ? target : target.parentElement) as HTMLElement;
       const idOrName = event.dataTransfer.getData('text/plain');
       const dropIndicator = document.getElementById(DOM.DROP_INDICATOR) as HTMLElement;
