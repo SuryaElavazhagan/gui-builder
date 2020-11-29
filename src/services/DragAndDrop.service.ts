@@ -18,11 +18,23 @@ export class DragAndDrop {
     const target = event.currentTarget as HTMLElement;
     if (!event.shiftKey && target.dataset.absolute !== 'true') {
       const dropIndicator = document.getElementById(DOM.DROP_INDICATOR) as HTMLElement;
-      const { width, bottom, left } = target.getBoundingClientRect();
+      const { width, bottom, left, top } = target.getBoundingClientRect();
       dropIndicator.style.width = `${width}px`;
-      dropIndicator.style.top = `${bottom}px`;
       dropIndicator.style.left = `${left}px`;
       dropIndicator.style.display = 'block';
+      if (target.parentElement && target.parentElement.firstElementChild === target) {
+        const isBottom = ((top + bottom) / 2) < event.clientY;
+        if (isBottom) {
+          dropIndicator.style.top = `${bottom}px`;
+          dropIndicator.dataset.drop = 'bottom';
+        } else {
+          dropIndicator.style.top = `${top}px`;
+          dropIndicator.dataset.drop = 'top';
+        }
+      } else {
+        dropIndicator.style.top = `${bottom}px`;
+        dropIndicator.dataset.drop = 'bottom';
+      }
     }
   }
 
@@ -56,9 +68,15 @@ export class DragAndDrop {
       } else if (target.id === DOM.BUILDER_ROOT_ID) {
         parent.append(ref);
       } else {
-        parent.insertBefore(ref, target.nextElementSibling);
+        const isBottom = dropIndicator.dataset.drop === 'bottom';
+        if (isBottom) {
+          parent.insertBefore(ref, target.nextElementSibling);
+        } else {
+          parent.insertBefore(ref, target);
+        }
       }
       dropIndicator.style.display = 'none';
+      dropIndicator.dataset.drop = undefined;
     }
   }
 
