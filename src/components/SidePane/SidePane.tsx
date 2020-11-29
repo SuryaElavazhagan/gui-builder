@@ -3,8 +3,6 @@ import GUIElements from './GUIElements';
 import GeneralEditor from './Editor/General/GeneralEditor';
 import { Builder } from '../../context/builder.context';
 import { mask } from '../../services/Mask.service';
-import back from '../../assets/icons/back.svg';
-import '../../styles/components/side-pane.scss';
 import { GUI_ELEMENTS } from '../../constants/element.constants';
 import RichTextEditor from './Editor/Specifics/RichTextEditor';
 import TextInputEditor from './Editor/Specifics/TextInputEditor';
@@ -15,8 +13,11 @@ import ImageEditor from './Editor/Specifics/ImageEditor';
 import { ColorResult, TwitterPicker } from 'react-color';
 import { STORAGE } from '../../constants/storage.constants';
 import { DragAndDrop } from '../../services/DragAndDrop.service';
+import tinykeys from 'tinykeys';
 import github from '../../assets/icons/github.png';
 import info from '../../assets/icons/info.svg';
+import back from '../../assets/icons/back.svg';
+import '../../styles/components/side-pane.scss';
 
 function SidePane(): JSX.Element {
   const { state, dispatch } = useContext(Builder);
@@ -25,6 +26,14 @@ function SidePane(): JSX.Element {
 
   useEffect(() => {
     setBackground(window.localStorage.getItem(STORAGE.BACKGROUND) ?? 'rgba(0,0,0,0)');
+    let unsubscribe = tinykeys(window, {
+      'Escape': handleBack
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
