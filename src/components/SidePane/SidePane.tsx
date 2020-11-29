@@ -15,6 +15,8 @@ import ImageEditor from './Editor/Specifics/ImageEditor';
 import { ColorResult, TwitterPicker } from 'react-color';
 import { STORAGE } from '../../constants/storage.constants';
 import { DragAndDrop } from '../../services/DragAndDrop.service';
+import github from '../../assets/icons/github.png';
+import info from '../../assets/icons/info.svg';
 
 function SidePane(): JSX.Element {
   const { state, dispatch } = useContext(Builder);
@@ -122,6 +124,16 @@ function SidePane(): JSX.Element {
           >
             Clear
           </button>
+        </div>
+        <div className="gui-side-pane-footer">
+          <a href="https://github.com/SuryaElavazhagan/gui-builder">
+            <img src={github} alt="Github"/>
+            Github
+          </a>
+          <a href="https://github.com/SuryaElavazhagan/gui-builder/blob/main/README.md">
+            <img src={info} alt="README"/>
+            README
+          </a>
         </div>
       </aside>
     );
