@@ -22,3 +22,12 @@ body {
   height: 0.1875rem;
   background-color: #BA68C8;
 }
+
+.gui-drag-image {
+  display: inline-block;
+  position: absolute;
+  color: white;
+  background: grey;
+  border-radius: 0.3125rem;
+  padding: 0.3125rem;
+}

@@ -1,6 +1,7 @@
 export const DOM = {
   BUILDER_ROOT_ID: 'gui-builder',
   DROP_INDICATOR: 'gui-drop-indicator',
+  DRAG_IMAGE: 'gui-drag-image',
   DEFAULTS: {
     TEXT: 'Consequatur atque sed eum et praesentium et et ut. Laboriosam ullam omnis cupiditate. Dolorum totam alias enim',
     BUTTON_LABEL: 'SUBMIT',

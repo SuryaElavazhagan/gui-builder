@@ -5,6 +5,7 @@ import textInput from '../../assets/icons/text-input.png';
 import button from '../../assets/icons/button.png';
 import image from '../../assets/icons/image.png';
 import { GUI_ELEMENTS } from '../../constants/element.constants';
+import { DragAndDrop } from '../../services/DragAndDrop.service';
 
 interface GUIElementsProps {
   handleDragStart: (event: DragEvent) => void;
@@ -18,6 +19,7 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
         draggable={true}
         data-type={GUI_ELEMENTS.HEADING}
         onDragStart={handleDragStart}
+        onDragEnd={DragAndDrop.toggleDragImage}
       >
         <img className="gui-element-icon" src={heading} alt="text" />
         <span className="gui-element-label">Heading</span>
@@ -27,6 +29,7 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
         draggable={true}
         data-type={GUI_ELEMENTS.TEXT}
         onDragStart={handleDragStart}
+        onDragEnd={DragAndDrop.toggleDragImage}
       >
         <img className="gui-element-icon" src={text} alt="text" />
         <span className="gui-element-label">Text</span>
@@ -36,6 +39,7 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
         draggable={true}
         data-type={GUI_ELEMENTS.IMAGE}
         onDragStart={handleDragStart}
+        onDragEnd={DragAndDrop.toggleDragImage}
       >
         <img className="gui-element-icon" src={image} alt="text" />
         <span className="gui-element-label">Image</span>
@@ -45,6 +49,7 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
         draggable={true}
         data-type={GUI_ELEMENTS.TEXT_INPUT}
         onDragStart={handleDragStart}
+        onDragEnd={DragAndDrop.toggleDragImage}
       >
         <img className="gui-element-icon" src={textInput} alt="text" />
         <span className="gui-element-label">Text Input</span>
@@ -54,6 +59,7 @@ function GUIElements({ handleDragStart }: GUIElementsProps) {
         draggable={true}
         data-type={GUI_ELEMENTS.BUTTON}
         onDragStart={handleDragStart}
+        onDragEnd={DragAndDrop.toggleDragImage}
       >
         <img className="gui-element-icon" src={button} alt="text" />
         <span className="gui-element-label">Button</span>

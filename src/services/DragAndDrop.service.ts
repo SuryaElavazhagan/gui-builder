@@ -1,3 +1,4 @@
+import { DragEvent as ReactDragEvent } from 'react';
 import { DOM } from "../constants/dom.constants";
 import { dom } from "./DOM.service";
 
@@ -7,6 +8,7 @@ export class DragAndDrop {
       const target = event.currentTarget as HTMLElement;
       event.dataTransfer.dropEffect = 'move';
       event.dataTransfer.setData('text/plain', target.id);
+      DragAndDrop.toggleDragImage(event, target.dataset.type ?? 'Element');
     }
   }
 
@@ -59,6 +61,14 @@ export class DragAndDrop {
     }
   }
 
+  private static setupDragImage() {
+    const dragImage = document.createElement('span');
+    dragImage.style.display = 'none';
+    dragImage.id = DOM.DRAG_IMAGE;
+    dragImage.classList.add('gui-drag-image');
+    document.body.appendChild(dragImage);
+  }
+
   private static setupDragIndicator() {
     const dropIndicator = document.createElement('div');
     dropIndicator.id = DOM.DROP_INDICATOR;
@@ -71,6 +81,19 @@ export class DragAndDrop {
     const root = document.getElementById(DOM.BUILDER_ROOT_ID) as HTMLElement;
     root.addEventListener('drop', DragAndDrop.handleDrop);
     DragAndDrop.setupDragIndicator();
+    DragAndDrop.setupDragImage();
+  }
+
+  public static toggleDragImage(event: DragEvent | ReactDragEvent, text: string = '') {
+    const dragImage = document.getElementById(DOM.DRAG_IMAGE) as HTMLElement;
+    dragImage.innerText = text.toUpperCase();
+
+    if (event.type === 'dragstart' && event.dataTransfer) {
+      dragImage.style.display = 'inline-block';
+      event.dataTransfer.setDragImage(dragImage, 10, 10);
+    } else if (event.type === 'dragexit') {
+      dragImage.style.display = 'none'
+    }
   }
 
   public static attach(ref: HTMLElement) {
@@ -78,5 +101,6 @@ export class DragAndDrop {
     ref.addEventListener('dragover', DragAndDrop.handleDragOver);
     ref.addEventListener('dragleave', DragAndDrop.handleDragLeave);
     ref.addEventListener('drop', DragAndDrop.handleDrop);
+    ref.addEventListener('dragend', DragAndDrop.toggleDragImage);
   }
 }

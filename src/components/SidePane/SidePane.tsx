@@ -14,6 +14,7 @@ import { LocalStorage } from '../../helper/LocalStorage';
 import ImageEditor from './Editor/Specifics/ImageEditor';
 import { ColorResult, TwitterPicker } from 'react-color';
 import { STORAGE } from '../../constants/storage.constants';
+import { DragAndDrop } from '../../services/DragAndDrop.service';
 
 function SidePane(): JSX.Element {
   const { state, dispatch } = useContext(Builder);
@@ -51,6 +52,7 @@ function SidePane(): JSX.Element {
     if (typeof type === 'string' && type !== '') {
       event.dataTransfer.dropEffect = 'copy';
       event.dataTransfer.setData('text/plain', type);
+      DragAndDrop.toggleDragImage(event, type);
     }
   }
 
