@@ -65,6 +65,7 @@ function BuilderPane() {
     const target = filterElementFromEvent(event);
     if (target) {
       event.stopPropagation();
+      mask.hideClickMask();
       mask.paintClickMask(target);
       dispatch({ type: 'select', payload: target.id });
     } else {
