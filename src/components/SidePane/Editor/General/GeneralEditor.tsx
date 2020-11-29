@@ -1,8 +1,8 @@
 import Collapse from 'rc-collapse';
-import { TwitterPicker } from 'react-color';
 import BackgroundEditor from './BackgroundEditor';
 import BorderEditor from './BorderEditor';
 import SpacingEditor from './SpacingEditor';
+import ShadowEditor from './ShadowEditor';
 import '../../../../styles/components/general-editor.scss';
 import { useContext } from 'react';
 import { Builder } from '../../../../context/builder.context';
@@ -33,8 +33,7 @@ function GeneralEditor({ handleDeselection }: GeneralEditorProps) {
           <BorderEditor />
         </Collapse.Panel>
         <Collapse.Panel header="Shadow">
-          <h5>Color: </h5>
-          <TwitterPicker />
+          <ShadowEditor />
         </Collapse.Panel>
       </Collapse>
       <div className="gui-editor-other-settings">
