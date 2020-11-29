@@ -1,7 +1,6 @@
 import { FormEvent, useState, useEffect, ChangeEvent } from "react";
 import Toggle from 'react-toggle';
 import { StyleParser } from "../../../../helper/StyleParser";
-import '../../../../styles/components/gutter.scss';
 
 interface GutterProps {
   names: string[];
@@ -40,7 +39,7 @@ function GutterEditor({ names, values, onChange }: GutterProps) {
 
   return (
     <div className="gui-gutter">
-      <div className="gui-gutter-apply-to-all-sides">
+      <div className="gui-toggle-input">
         <span>
           Apply to all sides
         </span>
@@ -60,7 +59,7 @@ function GutterEditor({ names, values, onChange }: GutterProps) {
           />
         ) : (
             <div>
-              <div className="gui-gutter-upper-half">
+              <div className="gui-split-input">
                 <div>
                   <h5>{names[0]}</h5>
                   <input
@@ -82,7 +81,7 @@ function GutterEditor({ names, values, onChange }: GutterProps) {
                   />
                 </div>
               </div>
-              <div className="gui-gutter-lower-half">
+              <div className="gui-split-input">
                 <div>
                   <h5>{names[2]}</h5>
                   <input
