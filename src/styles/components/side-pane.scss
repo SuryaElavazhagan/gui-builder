@@ -44,8 +44,8 @@
 }
 
 .gui-side-pane {
-  width: 30rem;
-  max-width: 30rem;
+  min-width: 24rem;
+  max-width: 24rem;
   height: 100%;
   overflow: scroll;
   box-shadow: 4px 4px 20px 0px rgba(0, 0, 0, 0.2);
