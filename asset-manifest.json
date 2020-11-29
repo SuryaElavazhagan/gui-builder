@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/gui-builder/static/css/main.cccea3d6.chunk.css",
-    "main.js": "/gui-builder/static/js/main.4a7652c1.chunk.js",
+    "main.css": "/gui-builder/static/css/main.3febd099.chunk.css",
+    "main.js": "/gui-builder/static/js/main.65bfdc19.chunk.js",
     "runtime-main.js": "/gui-builder/static/js/runtime-main.f99db442.js",
     "static/css/2.36024496.chunk.css": "/gui-builder/static/css/2.36024496.chunk.css",
-    "static/js/2.4a1c52cb.chunk.js": "/gui-builder/static/js/2.4a1c52cb.chunk.js",
+    "static/js/2.db45a132.chunk.js": "/gui-builder/static/js/2.db45a132.chunk.js",
     "static/js/3.35ab1b81.chunk.js": "/gui-builder/static/js/3.35ab1b81.chunk.js",
     "index.html": "/gui-builder/index.html",
-    "static/js/2.4a1c52cb.chunk.js.LICENSE.txt": "/gui-builder/static/js/2.4a1c52cb.chunk.js.LICENSE.txt",
+    "static/js/2.db45a132.chunk.js.LICENSE.txt": "/gui-builder/static/js/2.db45a132.chunk.js.LICENSE.txt",
     "static/media/back.c0fc836d.svg": "/gui-builder/static/media/back.c0fc836d.svg",
     "static/media/button.5736fe3c.png": "/gui-builder/static/media/button.5736fe3c.png",
     "static/media/info.b15cdce3.svg": "/gui-builder/static/media/info.b15cdce3.svg"
@@ -15,8 +15,8 @@
   "entrypoints": [
     "static/js/runtime-main.f99db442.js",
     "static/css/2.36024496.chunk.css",
-    "static/js/2.4a1c52cb.chunk.js",
-    "static/css/main.cccea3d6.chunk.css",
-    "static/js/main.4a7652c1.chunk.js"
+    "static/js/2.db45a132.chunk.js",
+    "static/css/main.3febd099.chunk.css",
+    "static/js/main.65bfdc19.chunk.js"
   ]
 }
