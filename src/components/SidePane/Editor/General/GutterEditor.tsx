@@ -13,11 +13,7 @@ function GutterEditor({ names, values, onChange }: GutterProps) {
 
   useEffect(() => {
     setIsAppliedToAllSides(StyleParser.isAppliedToAllSides(values));
-
-    // This should be initialized only once, after that
-    // This value should be controlled by user
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [values]);
 
   function handleInput(event: FormEvent<HTMLInputElement>) {
     let _values = Array.from(values);
