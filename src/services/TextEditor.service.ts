@@ -17,6 +17,7 @@ export interface TextEditCommands {
   'redo': undefined;
   'fontsize': string;
   'fontname': string;
+  'formatblock': string;
 }
 
 interface Selection {

@@ -36,4 +36,17 @@ const FONT_SIZES: SelectOptions[] = (() => {
   return sizes;
 })();
 
-export { FONT_SIZES, FONT_FAMILIES };
+const HEADINGS: SelectOptions[] = (() => {
+  const headings: SelectOptions[] = [
+    {
+      label: 'Select Heading',
+      value: 'none'
+    }
+  ];
+  for (let i = 1; i < 7; i++) {
+    headings.push({ label: `Heading ${i}`, value: `h${i}` });
+  }
+  return headings;
+})();
+
+export { FONT_SIZES, FONT_FAMILIES, HEADINGS };
